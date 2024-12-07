@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Science Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+        .stat-card {
+            background: #e8f5e9;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            flex: 1;
+            margin: 0 0.5rem;
+        }
+        canvas {
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Data Science Dashboard</h1>
+    </header>
+    <div class="container">
+        <h2>Overview</h2>
+        <div class="stats">
+            <div class="stat-card">
+                <h3>Total Records</h3>
+                <p id="total-records">Loading...</p>
+            </div>
+            <div class="stat-card">
+                <h3>Mean Value</h3>
+                <p id="mean-value">Loading...</p>
+            </div>
+            <div class="stat-card">
+                <h3>Median Value</h3>
+                <p id="median-value">Loading...</p>
+            </div>
+        </div>
+        <h2>Data Visualization</h2>
+        <canvas id="dataChart" width="400" height="200"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Simulate fetching data from Flask backend
+        const dataStats = {
+            totalRecords: 1500,
+            meanValue: 42.75,
+            medianValue: 40.0,
+            chartData: {
+                labels: ["Category A", "Category B", "Category C", "Category D"],
+                values: [300, 450, 700, 50]
+            }
+        };
+
+        // Populate stats
+        document.getElementById('total-records').textContent = dataStats.totalRecords;
+        document.getElementById('mean-value').textContent = dataStats.meanValue.toFixed(2);
+        document.getElementById('median-value').textContent = dataStats.medianValue.toFixed(2);
+
+        // Render chart
+        const ctx = document.getElementById('dataChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: dataStats.chartData.labels,
+                datasets: [{
+                    label: 'Data Values',
+                    data: dataStats.chartData.values,
+                    backgroundColor: ['#66bb6a', '#42a5f5', '#ffca28', '#ef5350'],
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: true },
+                },
+            }
+        });
+    </script>
+</body>
+</html>
+start datascience.html

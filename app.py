@@ -1,14 +1,12 @@
-from flask import Flask  
+from flask import Flask, render_template
 
 app = Flask(__name__)  # Create the Flask app instance
 
-@app.route("/home")
-def welcome():
-    return "Welcome to my world!.welcome to home page "
 
-@app.route("/carrers")
+
+@app.route("/data")
 def carrers():
-    return "Welcome to job fair "
+    return render_template("data.html")
 
 @app.route("/contact")
 def contacts():
