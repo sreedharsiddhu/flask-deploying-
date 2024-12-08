@@ -6,8 +6,7 @@ app = Flask(__name__)  # Create the Flask app instance
 
 @app.route("/data")
 def carrers():
-    return render_template("data.html")
-
+     return render_template("data.html")
 @app.route("/contact")
 def contacts():
     return "Welcome to my world!. hello hj hi da "
